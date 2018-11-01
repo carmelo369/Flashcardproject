@@ -5,7 +5,7 @@ This lab 2 allows the user to enter a new question and a new answer.
 
 ### App Walk-though
 
-<img src="http://g.recordit.co/SnQOy1jMr0.gif" width=200><br>
+<img src="http://g.recordit.co/SnQOy1jMr0.gif" width=200 heigth="400" />
 
 ## Required
 - [X] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
