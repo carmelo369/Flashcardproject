@@ -58,4 +58,4 @@ This app ask for question and shows the answer after click it.
 - [ ] Further customize and style the card
 
 <img src="http://g.recordit.co/V2XrDGhb4s.gif" width="200" height="400" />
-
+ 
