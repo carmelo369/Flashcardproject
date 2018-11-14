@@ -18,6 +18,17 @@
         android:adjustViewBounds="true"
         android:src="@drawable/ic_iconmonstr_plus_6" />
 
+    <ImageView
+        android:id="@+id/next_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="217dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_iconmonstr_arrow_28" />
+
     <TextView
         android:id="@+id/flashcard_question"
         android:layout_width="match_parent"

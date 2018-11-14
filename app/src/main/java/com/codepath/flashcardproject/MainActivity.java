@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        flashcardDatabase = new FlashcardDatabase(this);// read data
+        allFlashcards = flashcardDatabase.getAllCards();// read data
 
     findViewById(R.id.flashcard_question).setOnClickListener(new View.OnClickListener()
     {
@@ -39,8 +43,35 @@ public class MainActivity extends AppCompatActivity {
         }
     });
 
-    }
+    flashcardDatabase = new FlashcardDatabase(getApplicationContext());
+    if (allFlashcards != null && allFlashcards.size() > 0) {
+        ((TextView) findViewById(R.id.flashcard_question)).setText(allFlashcards.get(0).getQuestion());
+        ((TextView) findViewById(R.id.flashcard_answer)).setText(allFlashcards.get(0).getAnswer());
+    }// new flashcard activity
 
+        findViewById(R.id.next_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // advance our pointer index so we can show the next card
+                currentCardDisplayedIndex++;
+
+                // make sure we don't get an IndexOutOfBoundsError if we are viewing the last indexed card in our list
+                if (currentCardDisplayedIndex > allFlashcards.size() - 1) {
+                    currentCardDisplayedIndex = 0;
+                }
+
+                // set the question and answer TextViews with data from the database
+                ((TextView) findViewById(R.id.flashcard_question)).setText(allFlashcards.get(currentCardDisplayedIndex).getQuestion());
+                ((TextView) findViewById(R.id.flashcard_answer)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+            }
+        });
+
+    }// End on Create
+    int currentCardDisplayedIndex = 0;
+
+
+    FlashcardDatabase flashcardDatabase; //Database access
+    List<Flashcard> allFlashcards; // Save flashcards
    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
       if (requestCode == 100) { // this 100 needs to match the 100 we used when we called startActivityForResult!
@@ -49,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
           //Update new question and new answer
           ((TextView) findViewById(R.id.flashcard_question)).setText(Question);
           ((TextView) findViewById(R.id.flashcard_answer)).setText(Answer);
+
+          flashcardDatabase.insertCard(new Flashcard(Question, Answer));
+          allFlashcards = flashcardDatabase.getAllCards(); //flashcards updates
       }
     }
 }
