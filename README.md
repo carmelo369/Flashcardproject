@@ -14,7 +14,7 @@ Annimations are added to this flashcard
 - [ ] User sees a 'card flip' animation when the card is tapped
 - [ ] User sees a celebration animation with confetti when they answer a question correctly
 
-<img src="http://g.recordit.co/OE9MGR6mKV.gif" width="200" height="400" />
+<img src="http://g.recordit.co/a9lSoqKmup.gif" width="200" height="400" />
 
 ===============================================================================
 ## Lab 3
